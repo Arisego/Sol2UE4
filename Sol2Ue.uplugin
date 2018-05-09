@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Sol2Ue",
+	"Description": "Sol2 for u4",
+	"Category": "Other",
+	"CreatedBy": "Naru",
+	"CreatedByURL": "https://ch-wind.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "Sol2Ue",
+			"Type": "Developer",
+			"LoadingPhase": "Default"
+		}
+	]
+}
