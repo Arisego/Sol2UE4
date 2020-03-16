@@ -9,16 +9,7 @@
 
 void FSol2UeModule::StartupModule()
 {
-	FString LibPath = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir() + "Plugins/Sol2Ue/Source/ThirdParty/LuaJIT/lib/");
 
-	// If we're on Windows we need to load DLLs from our custom path
-#if PLATFORM_WINDOWS && PLATFORM_64BITS 
-	LibPath += "Win64";
-	FPlatformProcess::PushDllDirectory(*LibPath);
-	//DLLHandle = FPlatformProcess::GetDllHandle(LibPath/TEXT("lua51.dll"));
-
-	UE_LOG(LogTemp, Log, TEXT("patched dll directory paths: %s"), *LibPath);
-#endif
 }
 
 void FSol2UeModule::ShutdownModule()

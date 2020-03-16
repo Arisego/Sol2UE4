@@ -10,7 +10,6 @@ extern "C"
 }
 
 #define SOL_USING_CXX_LUA		1
-#define SOL_USING_CXX_LUAJIT	1
 #include "sol.hpp"
 
 

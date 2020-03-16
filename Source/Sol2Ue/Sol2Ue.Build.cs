@@ -22,7 +22,7 @@ public class Sol2Ue : ModuleRules
 			new string[] {
 				"Sol2Ue/Private",
                 "ThirdParty/Sol2",
-                "ThirdParty/LuaJIT/src"
+                "ThirdParty/Lua/include"
 				// ... add other private include paths required here ...
 			}
 			);
@@ -58,13 +58,13 @@ public class Sol2Ue : ModuleRules
 
         if (Target.Platform == UnrealTargetPlatform.Win64)
         {
-            var LuaJitLibDir = ThirdPartyPath + "LuaJIT/lib/Win64";
+            var LuaJitLibDir = ThirdPartyPath + "Lua/lib/x64";
             PublicLibraryPaths.Add(LuaJitLibDir);
 
-            PublicAdditionalLibraries.Add(String.Format("lua51.lib"));
-            PublicDelayLoadDLLs.Add(String.Format("lua51.dll"));
+            PublicAdditionalLibraries.Add(String.Format("Lua5.3.lib"));
+            //PublicDelayLoadDLLs.Add(String.Format("lua51.dll"));
 
-            RuntimeDependencies.Add(LuaJitLibDir + "lua51.dll", StagedFileType.NonUFS);
+            //RuntimeDependencies.Add(LuaJitLibDir + "lua51.dll", StagedFileType.NonUFS);
             //RuntimeDependencies.Add(LuaJitLibDir + "/lua51.pdb", StagedFileType.DebugNonUFS);
         }
     }
