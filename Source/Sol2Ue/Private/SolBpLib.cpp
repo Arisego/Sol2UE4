@@ -6,6 +6,8 @@
 
 #define SOL_ALL_SAFETIES_ON 1
 #include "sol.hpp"
+#include <map>
+#include <string>
 
 
 void USolBpLib::TestSol()
@@ -66,4 +68,22 @@ void USolBpLib::TestSol()
 			UE_LOG(LogLua, Log, TEXT("the fourth script failed, which was intentional! nError: %s"), ANSI_TO_TCHAR(err.what()));
 		}
 	}
+
+	/** Map test */
+	std::map<std::string, int> ValMap;
+	ValMap["test01"] = 17;
+
+	lua.set("mymap", std::ref(ValMap));
+
+	// Print out original
+	lua.script("print('Testing map: ' ..mymap['test01'])");
+
+	// Modified from C++
+	ValMap["test01"] = 217;
+    lua.script("print('Testing map: ' ..mymap['test01'])");
+
+	// Modified from Lua
+	lua.script("mymap['test01'] = 999");
+	UE_LOG(LogLua, Log, TEXT("Testing map: %d"), ValMap["test01"]);
+
 }
