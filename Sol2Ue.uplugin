@@ -16,7 +16,7 @@
 	"Modules": [
 		{
 			"Name": "Sol2Ue",
-			"Type": "Developer",
+			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
 	]

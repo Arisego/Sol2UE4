@@ -7,6 +7,9 @@
 
 #define LOCTEXT_NAMESPACE "FSol2UeModule"
 
+DEFINE_LOG_CATEGORY(LogLua);
+
+
 void FSol2UeModule::StartupModule()
 {
 

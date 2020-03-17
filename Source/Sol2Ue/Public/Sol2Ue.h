@@ -4,6 +4,8 @@
 
 #include "ModuleManager.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(LogLua, Log, All);
+
 class FSol2UeModule : public IModuleInterface
 {
 public:

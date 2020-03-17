@@ -1,21 +1,16 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "SolBpLib.h"
+#include "Sol2Ue.h"
 
-extern "C"
-{
-#include <lua.h>
-#include <lualib.h>
-#include <lauxlib.h>
-}
 
-#define SOL_USING_CXX_LUA		1
+#define SOL_ALL_SAFETIES_ON 1
 #include "sol.hpp"
 
 
 void USolBpLib::TestSol()
 {
-	UE_LOG(LogTemp,Log, TEXT("=== basic ==="));
+	UE_LOG(LogLua,Log, TEXT("=== basic ==="));
 
 	// create an empty lua state
 	sol::state lua;
@@ -26,6 +21,8 @@ void USolBpLib::TestSol()
 	lua.open_libraries(sol::lib::base);
 	// you can open all libraries by passing no arguments
 	//lua.open_libraries();
+
+	lua.set_function("print", [](const char* y) { UE_LOG(LogLua, Log, TEXT("%s"), UTF8_TO_TCHAR(y)); });
 
 	// call lua code directly
 	lua.script("print('hello world')");
@@ -47,12 +44,12 @@ void USolBpLib::TestSol()
 	{
 		auto result = lua.script("print('hello hello again, world') \n return 24", simple_handler);
 		if (result.valid()) {
-			UE_LOG(LogTemp, Log, TEXT("the third script worked, and a double-hello statement should appear above this one!"));
+			UE_LOG(LogLua, Log, TEXT("the third script worked, and a double-hello statement should appear above this one!"));
 			int value = result;
 			ensure(value == 24);
 		}
 		else {
-			UE_LOG(LogTemp, Log, TEXT("the third script failed, check the result type for more information!"));
+			UE_LOG(LogLua, Log, TEXT("the third script failed, check the result type for more information!"));
 		}
 	}
 
@@ -60,13 +57,13 @@ void USolBpLib::TestSol()
 	{
 		auto result = lua.script("does.not.exist", simple_handler);
 		if (result.valid()) {
-			UE_LOG(LogTemp, Log, TEXT("the fourth script worked, which it wasn't supposed to! Panic!"));
+			UE_LOG(LogLua, Log, TEXT("the fourth script worked, which it wasn't supposed to! Panic!"));
 			int value = result;
 			ensure(value == 24);
 		}
 		else {
 			sol::error err = result;
-			UE_LOG(LogTemp, Log, TEXT("the fourth script failed, which was intentional! nError: %s"), ANSI_TO_TCHAR(err.what()));
+			UE_LOG(LogLua, Log, TEXT("the fourth script failed, which was intentional! nError: %s"), ANSI_TO_TCHAR(err.what()));
 		}
 	}
 }

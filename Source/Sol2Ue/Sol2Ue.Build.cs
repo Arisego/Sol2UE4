@@ -54,18 +54,12 @@ public class Sol2Ue : ModuleRules
 			}
 			);
 
-        var ThirdPartyPath = Path.GetFullPath(Path.Combine(ModuleDirectory, "../ThirdParty/"));
+		var ThirdPartyPath = Path.GetFullPath(Path.Combine(ModuleDirectory, "../ThirdParty/"));
 
         if (Target.Platform == UnrealTargetPlatform.Win64)
         {
-            var LuaJitLibDir = ThirdPartyPath + "Lua/lib/x64";
-            PublicLibraryPaths.Add(LuaJitLibDir);
-
-            PublicAdditionalLibraries.Add(String.Format("Lua5.3.lib"));
-            //PublicDelayLoadDLLs.Add(String.Format("lua51.dll"));
-
-            //RuntimeDependencies.Add(LuaJitLibDir + "lua51.dll", StagedFileType.NonUFS);
-            //RuntimeDependencies.Add(LuaJitLibDir + "/lua51.pdb", StagedFileType.DebugNonUFS);
+            var LuaLibDir = ThirdPartyPath + "Lua/lib/x64/Lua5.3.lib";
+            PublicAdditionalLibraries.Add(LuaLibDir);
         }
     }
 }
