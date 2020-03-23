@@ -34,13 +34,10 @@
 
 #if defined(UE_BUILD_DEBUG) || defined(UE_BUILD_DEVELOPMENT) || defined(UE_BUILD_TEST) || defined(UE_BUILD_SHIPPING) || defined(UE_SERVER)
 #define SOL_INSIDE_UNREAL
-#endif // Unreal Engine 4 bullshit
-
-#ifdef SOL_INSIDE_UNREAL
 #ifdef check
-#define SOL_INSIDE_UNREAL_REMOVED_CHECK
+#pragma push_macro("check")
 #undef check
-#endif 
+#endif
 #endif // Unreal Engine 4 Bullshit
 
 #ifdef __GNUC__
@@ -21471,14 +21468,9 @@ namespace sol {
 #pragma warning( push )
 #endif // g++
 
-#ifdef SOL_INSIDE_UNREAL
-#ifdef SOL_INSIDE_UNREAL_REMOVED_CHECK
-#if DO_CHECK
-#define check(expr) { if(UNLIKELY(!(expr))) { FDebug::LogAssertFailedMessage( #expr, __FILE__, __LINE__ ); _DebugBreakAndPromptForRemote(); FDebug::AssertFailed( #expr, __FILE__, __LINE__ ); CA_ASSUME(false); } }
-#else
-#define check(expr) { CA_ASSUME(expr); }
-#endif
-#endif 
+#if defined(SOL_INSIDE_UNREAL)
+#undef check
+#pragma pop_macro("check")
 #endif // Unreal Engine 4 Bullshit
 
 #endif // SOL_HPP

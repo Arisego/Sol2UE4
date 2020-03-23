@@ -86,4 +86,6 @@ void USolBpLib::TestSol()
 	lua.script("mymap['test01'] = 999");
 	UE_LOG(LogLua, Log, TEXT("Testing map: %d"), ValMap["test01"]);
 
+	check(true);
+
 }
