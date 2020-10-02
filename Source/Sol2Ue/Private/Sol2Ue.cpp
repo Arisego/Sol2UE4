@@ -2,8 +2,7 @@
 
 #include "Sol2Ue.h"
 #include "Core.h"
-#include "ModuleManager.h"
-#include "IPluginManager.h"
+#include "Interfaces/IPluginManager.h"
 
 #define LOCTEXT_NAMESPACE "FSol2UeModule"
 
