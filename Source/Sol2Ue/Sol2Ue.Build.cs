@@ -12,7 +12,6 @@ public class Sol2Ue : ModuleRules
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
-				"Sol2Ue/Public"
 				// ... add public include paths required here ...
 			}
 			);
